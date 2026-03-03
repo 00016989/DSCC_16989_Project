@@ -1,0 +1,53 @@
+services:
+  db:
+    image: postgres:15-alpine
+    container_name: postgres_db
+    restart: unless-stopped
+    env_file:
+      - .env
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - app_network
+
+  web:
+    build: .
+    container_name: django_app
+    restart: unless-stopped
+    command: >
+      sh -c "python manage.py migrate &&
+             python manage.py collectstatic --noinput &&
+             gunicorn core.wsgi:application --bind 0.0.0.0:8000 --workers 3"
+    env_file:
+      - .env
+    volumes:
+      - static_volume:/app/staticfiles
+      - media_volume:/app/media
+    depends_on:
+      - db
+    networks:
+      - app_network
+
+  nginx:
+    image: nginx:stable-alpine
+    container_name: nginx_server
+    restart: unless-stopped
+    ports:
+      - "8080:80"
+    volumes:
+      - ./nginx:/etc/nginx/conf.d
+      - static_volume:/app/staticfiles
+      - media_volume:/app/media
+    depends_on:
+      - web
+    networks:
+      - app_network
+
+volumes:
+  postgres_data:
+  static_volume:
+  media_volume:
+
+networks:
+  app_network:
+    driver: bridge
