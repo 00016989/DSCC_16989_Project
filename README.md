@@ -456,6 +456,9 @@ learning or deployment needs.
 ### Product Detail
 ![Product Detail](screenshots/product_detail.png)
 
+### Feedback List
+![Feedbacks](screenshots/feedback.png)
+
 ### Login Page
 ![Login](screenshots/login.png)
 
