@@ -1,0 +1,132 @@
+{% extends 'main/base.html' %}
+{% block content %}
+
+<!-- ================= HERO SECTION ================= -->
+<div style="text-align:center; padding:60px 20px; margin-bottom:70px;">
+    <h1 style="font-size:42px; margin-bottom:15px;">
+        Welcome to Original Market
+    </h1>
+
+    <p style="font-size:18px; color:#666; max-width:650px; margin:auto;">
+        Your trusted place to discover high-quality products at great prices.
+        We carefully curate every item to ensure value, reliability, and satisfaction.
+    </p>
+
+    <div style="margin-top:35px;">
+        <a href="{% url 'products' %}" class="btn" style="padding:12px 28px; font-size:16px;">
+            Explore Our Products
+        </a>
+    </div>
+</div>
+
+
+<!-- ================= ABOUT SECTION ================= -->
+<div style="display:flex; gap:50px; align-items:center; margin-bottom:80px; flex-wrap:wrap;">
+    
+    <div style="flex:1; min-width:280px;">
+        <h2>About Our Market</h2>
+        <p style="color:#555; margin-top:15px; line-height:1.7;">
+            Original Market was built with one simple mission:
+            to provide customers with reliable, affordable, and quality products
+            in one convenient place.
+        </p>
+
+        <p style="color:#555; margin-top:10px; line-height:1.7;">
+            Whether you're shopping for everyday essentials or something special,
+            we aim to deliver a smooth and enjoyable experience.
+        </p>
+    </div>
+
+    <div style="flex:1; min-width:280px; text-align:center;">
+        <div style="
+            background:white;
+            padding:40px;
+            border-radius:15px;
+            box-shadow:0 8px 25px rgba(0,0,0,0.08);
+        ">
+            <h3 style="margin-bottom:15px;">Why Choose Us?</h3>
+            <p style="color:#666;">✔ Carefully Selected Products</p>
+            <p style="color:#666;">✔ Competitive Prices</p>
+            <p style="color:#666;">✔ Customer Satisfaction Focused</p>
+        </div>
+    </div>
+
+</div>
+
+
+<!-- ================= LATEST PRODUCTS ================= -->
+<h2 style="margin-bottom:25px;">Latest Products</h2>
+
+<div style="display:flex; flex-wrap:wrap; gap:25px; margin-bottom:80px;">
+
+    {% for product in products %}
+        <div style="
+            background:white;
+            padding:25px;
+            width:300px;
+            border-radius:12px;
+            box-shadow:0 6px 18px rgba(0,0,0,0.08);
+            transition:0.3s ease;
+        "
+        onmouseover="this.style.transform='translateY(-5px)'"
+        onmouseout="this.style.transform='translateY(0)'"
+        >
+
+            <h3 style="margin-bottom:8px;">
+                {{ product.name }}
+            </h3>
+
+            <p style="font-size:13px; color:#888;">
+                {{ product.category.name }}
+            </p>
+
+            <p style="margin:15px 0; color:#555;">
+                {{ product.description|truncatewords:15 }}
+            </p>
+
+            <p style="font-size:18px; font-weight:600;">
+                ${{ product.price }}
+            </p>
+
+            <div style="margin-top:15px;">
+                <a href="{% url 'product_detail' product.id %}" class="btn">
+                    View Details
+                </a>
+            </div>
+
+        </div>
+
+    {% empty %}
+        <p>No products available yet.</p>
+    {% endfor %}
+
+</div>
+
+
+<!-- ================= FEATURE HIGHLIGHTS ================= -->
+<div style="display:flex; justify-content:space-between; gap:30px; flex-wrap:wrap; text-align:center;">
+
+    <div style="flex:1; min-width:220px;">
+        <h3>🚚 Fast Delivery</h3>
+        <p style="color:#666; margin-top:10px;">
+            Quick and reliable shipping to your doorstep.
+        </p>
+    </div>
+
+    <div style="flex:1; min-width:220px;">
+        <h3>🔒 Secure Payment</h3>
+        <p style="color:#666; margin-top:10px;">
+            Safe and protected transactions every time.
+        </p>
+    </div>
+
+    <div style="flex:1; min-width:220px;">
+        <h3>⭐ Premium Quality</h3>
+        <p style="color:#666; margin-top:10px;">
+            We prioritize quality over quantity.
+        </p>
+    </div>
+
+</div>
+
+{% endblock %}

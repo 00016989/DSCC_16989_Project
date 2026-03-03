@@ -1,0 +1,58 @@
+{% extends 'main/base.html' %}
+
+{% block content %}
+
+<h1>Register</h1>
+
+<div style="
+    background: white;
+    padding: 30px;
+    max-width: 400px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+">
+
+    <form method="post">
+        {% csrf_token %}
+
+        {% if form.errors %}
+            <div style="color:red; margin-bottom:15px;">
+                Please fix the errors below.
+            </div>
+        {% endif %}
+
+        <div style="margin-bottom: 20px;">
+            <label><strong>Username</strong></label><br><br>
+            {{ form.username }}
+            {{ form.username.errors }}
+        </div>
+
+        <div style="margin-bottom: 20px;">
+            <label><strong>Password</strong></label><br><br>
+            {{ form.password1 }}
+            {{ form.password1.errors }}
+        </div>
+
+        <div style="margin-bottom: 25px;">
+            <label><strong>Confirm Password</strong></label><br><br>
+            {{ form.password2 }}
+            {{ form.password2.errors }}
+        </div>
+
+        <button type="submit" class="btn" style="width:100%;">
+            Create Account
+        </button>
+    </form>
+
+    <hr style="margin:25px 0;">
+
+    <p>
+        Already have an account?
+        <a href="{% url 'login' %}" style="color:#2196F3; font-weight:600;">
+            Login here
+        </a>
+    </p>
+
+</div>
+
+{% endblock %}

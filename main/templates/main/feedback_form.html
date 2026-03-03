@@ -1,0 +1,50 @@
+{% extends 'main/base.html' %}
+
+{% block content %}
+
+<h1>
+    {% if object %}
+        Edit Feedback
+    {% else %}
+        Leave Feedback
+    {% endif %}
+</h1>
+
+<div style="
+    background: white;
+    padding: 30px;
+    max-width: 600px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+">
+
+    <form method="post">
+        {% csrf_token %}
+
+        {% if form.errors %}
+            <div style="color: red; margin-bottom: 15px;">
+                Please fix the errors below.
+            </div>
+        {% endif %}
+
+        <div style="margin-bottom: 25px;">
+            <label for="id_message"><strong>Your Message:</strong></label><br><br>
+            {{ form.message }}
+            {{ form.message.errors }}
+        </div>
+
+        <div style="display:flex; gap:15px;">
+            <button type="submit" class="btn">
+                {% if object %}Update{% else %}Submit{% endif %}
+            </button>
+
+            <a href="{% url 'feedback_list' %}" class="btn btn-danger">
+                Cancel
+            </a>
+        </div>
+
+    </form>
+
+</div>
+
+{% endblock %}

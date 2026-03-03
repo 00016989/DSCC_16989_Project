@@ -1,0 +1,56 @@
+{% extends "main/base.html" %}
+
+{% block content %}
+
+<h2 style="margin-bottom: 25px;">
+    {% if object %}Edit Product{% else %}Add Product{% endif %}
+</h2>
+
+<div style="
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+    max-width: 600px;
+">
+
+    <form method="post">
+        {% csrf_token %}
+
+        {% for field in form %}
+            <div style="margin-bottom: 20px;">
+                <label style="font-weight: 600;">
+                    {{ field.label }}
+                </label><br><br>
+
+                {{ field }}
+
+                {% if field.errors %}
+                    <div style="color: red; font-size: 14px; margin-top:5px;">
+                        {{ field.errors }}
+                    </div>
+                {% endif %}
+            </div>
+        {% endfor %}
+
+        <div style="display:flex; gap:15px; flex-wrap:wrap;">
+            <button type="submit" class="btn">
+                {% if object %}Update{% else %}Create{% endif %}
+            </button>
+
+            {% if object %}
+            <a href="{% url 'product_detail' object.id %}" class="btn btn-danger">
+                Cancel
+            </a>
+             {% else %}
+            <a href="{% url 'products' %}" class="btn btn-danger">
+                Cancel
+            </a>
+            {% endif %}
+        </div>
+
+    </form>
+
+</div>
+
+{% endblock %}

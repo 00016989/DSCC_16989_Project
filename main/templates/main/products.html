@@ -1,0 +1,105 @@
+{% extends 'main/base.html' %}
+
+{% block content %}
+
+<!-- PAGE HEADER -->
+<div style="margin-bottom:40px;">
+    <h1 style="font-size:32px;">All Products</h1>
+    <p style="color:#666; margin-top:5px;">
+        Browse our complete collection.
+    </p>
+
+    {% if user.is_staff %}
+        <div style="margin-top:20px;">
+            <a href="{% url 'product_add' %}" class="btn">
+                + Add New Product
+            </a>
+        </div>
+    {% endif %}
+</div>
+
+<!-- CATEGORY FILTER -->
+<div style="margin-bottom:35px;">
+    <h3 style="margin-bottom:15px;">Filter by Category</h3>
+
+    <div style="display:flex; gap:12px; flex-wrap:wrap;">
+
+        <a href="{% url 'products' %}"
+           class="category-btn {% if not request.GET.category %}active-category{% endif %}">
+            All
+        </a>
+
+        {% for category in categories %}
+            <a href="{% url 'products' %}?category={{ category.id }}"
+               class="category-btn {% if request.GET.category == category.id|stringformat:'s' %}active-category{% endif %}">
+                {{ category.name }}
+            </a>
+        {% endfor %}
+
+    </div>
+</div>
+
+<!-- PRODUCT GRID -->
+<div style="display:flex; flex-wrap:wrap; gap:25px;">
+
+    {% for product in products %}
+        <div style="
+            background:white;
+            padding:25px;
+            width:280px;
+            border-radius:12px;
+            box-shadow:0 6px 18px rgba(0,0,0,0.08);
+            transition:0.3s ease;
+            display:flex;
+            flex-direction:column;
+            justify-content:space-between;
+        "
+        onmouseover="this.style.transform='translateY(-5px)'"
+        onmouseout="this.style.transform='translateY(0)'"
+        >
+
+            <div>
+                <h3 style="margin-bottom:8px;">
+                    {{ product.name }}
+                </h3>
+
+                <p style="font-size:13px; color:#888; margin-bottom:8px;">
+                    {{ product.category }}
+                </p>
+
+                <p style="color:#555; font-size:14px;">
+                    {{ product.description|truncatewords:15 }}
+                </p>
+
+                <p style="margin:18px 0; font-size:18px; font-weight:600;">
+                    ${{ product.price }}
+                </p>
+            </div>
+
+            <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:10px;">
+
+                <a href="{% url 'product_detail' product.id %}" class="btn">
+                    View
+                </a>
+
+                {% if user.is_staff %}
+                    <a href="{% url 'product_update' product.id %}" class="btn btn-success">
+                        Edit
+                    </a>
+
+                    <a href="{% url 'product_delete' product.id %}" class="btn btn-danger">
+                        Delete
+                    </a>
+                {% endif %}
+
+            </div>
+
+        </div>
+
+    {% empty %}
+        <p>No products available yet.</p>
+    {% endfor %}
+
+</div>
+
+{% endblock %}
