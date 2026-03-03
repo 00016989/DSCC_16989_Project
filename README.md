@@ -443,3 +443,21 @@ DSCC_16989_Project/
 
 Thank you for reviewing the project! Feel free to fork, modify, and extend it for your own
 learning or deployment needs.
+
+
+## Screenshots
+
+### Home Page
+![Home](screenshots/client_homepage.png)
+
+### Product List
+![Products](screenshots/client_product.png)
+
+### Product Detail
+![Product Detail](screenshots/product_detail.png)
+
+### Login Page
+![Login](screenshots/login.png)
+
+### Register Page
+![Register](screenshots/register.png)
