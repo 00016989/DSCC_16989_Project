@@ -457,7 +457,7 @@ learning or deployment needs.
 ![Product Detail](screenshots/product_detail.png)
 
 ### Feedback List
-![Feedbacks](screenshots/client_feedback.png)
+![Feedbacks](screenshots/feedback.png)
 
 ### Login Page
 ![Login](screenshots/login.png)
