@@ -11,12 +11,13 @@ SECRET_KEY = os.getenv("SECRET_KEY")
 
 DEBUG = os.getenv("DEBUG", "False") == "True"
 
-ALLOWED_HOSTS = ['170.168.6.94']
+ALLOWED_HOSTS = ['originalmart.uz', 'www.originalmart.uz']
 
 # Required when DEBUG=False and behind nginx
 
 CSRF_TRUSTED_ORIGINS = [
-    "http://170.168.6.94"
+    "http://originalmart.uz",
+    "http://www.originalmart.uz"
 ]
 # --------------------------------------------------
 
