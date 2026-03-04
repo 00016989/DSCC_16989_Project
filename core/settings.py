@@ -11,13 +11,13 @@ SECRET_KEY = os.getenv("SECRET_KEY")
 
 DEBUG = os.getenv("DEBUG", "False") == "True"
 
-ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS", "").split(",")
+ALLOWED_HOSTS = ['170.168.6.94']
 
 # Required when DEBUG=False and behind nginx
-CSRF_TRUSTED_ORIGINS = [
-    "http://localhost:8080",
-]
 
+CSRF_TRUSTED_ORIGINS = [
+    "http://170.168.6.94"
+]
 # --------------------------------------------------
 
 INSTALLED_APPS = [
