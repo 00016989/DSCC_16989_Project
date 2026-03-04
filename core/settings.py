@@ -67,7 +67,7 @@ WSGI_APPLICATION = "core.wsgi.application"
 # DATABASE
 # --------------------------------------------------
 
-if "test" in sys.argv:
+if os.getenv("GITHUB_ACTIONS") == "true":
     DATABASES = {
         "default": {
             "ENGINE": "django.db.backends.sqlite3",
@@ -81,10 +81,11 @@ else:
             "NAME": os.getenv("POSTGRES_DB"),
             "USER": os.getenv("POSTGRES_USER"),
             "PASSWORD": os.getenv("POSTGRES_PASSWORD"),
-            "HOST": os.getenv("POSTGRES_HOST"),
-            "PORT": os.getenv("POSTGRES_PORT"),
+            "HOST": os.getenv("POSTGRES_HOST", "db"),
+            "PORT": 5432,
         }
     }
+    
 
 # --------------------------------------------------
 
