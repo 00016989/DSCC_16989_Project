@@ -33,7 +33,7 @@ services:
     container_name: nginx_server
     restart: unless-stopped
     ports:
-      - "8080:80"
+      - "80:80"
     volumes:
       - ./nginx:/etc/nginx/conf.d
       - static_volume:/app/staticfiles
