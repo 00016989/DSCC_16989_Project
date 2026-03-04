@@ -11,13 +11,15 @@ SECRET_KEY = os.getenv("SECRET_KEY")
 
 DEBUG = os.getenv("DEBUG", "False") == "True"
 
-ALLOWED_HOSTS = ['originalmart.uz', 'www.originalmart.uz']
+ALLOWED_HOSTS = ["originalmart.uz", "www.originalmart.uz", "localhost", "127.0.0.1"]
 
 # Required when DEBUG=False and behind nginx
 
 CSRF_TRUSTED_ORIGINS = [
     "http://originalmart.uz",
-    "http://www.originalmart.uz"
+    "http://www.originalmart.uz",
+    "http://localhost",
+    "http://127.0.0.1"
 ]
 # --------------------------------------------------
 
@@ -121,4 +123,4 @@ LOGOUT_REDIRECT_URL = "login"
 # Important when behind nginx
 # --------------------------------------------------
 
-SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "http")
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
