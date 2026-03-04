@@ -11,7 +11,7 @@ services:
       - app_network
 
   web:
-    build: .
+    image: slkzii/originalmart:latest
     container_name: django_app
     restart: unless-stopped
     command: >
