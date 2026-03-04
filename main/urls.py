@@ -25,28 +25,28 @@ urlpatterns = [
     path('product/<int:pk>/delete/', ProductDeleteView.as_view(), name='product_delete'),
 
 
-    path('product/<int:pk>/feedback/add/', 
-         FeedbackCreateView.as_view(), 
+    path('product/<int:pk>/feedback/add/',
+         FeedbackCreateView.as_view(),
          name='feedback_create'),
 
-    path('feedback/<int:pk>/edit/', 
-         FeedbackUpdateView.as_view(), 
+    path('feedback/<int:pk>/edit/',
+         FeedbackUpdateView.as_view(),
          name='feedback_update'),
 
-    path('feedback/<int:pk>/delete/', 
-         FeedbackDeleteView.as_view(), 
+    path('feedback/<int:pk>/delete/',
+         FeedbackDeleteView.as_view(),
          name='feedback_delete'),
 
-    path('feedback/list/', 
-         FeedbackListView.as_view(), 
+    path('feedback/list/',
+         FeedbackListView.as_view(),
          name='feedback_list'),
 
-    path('login/', 
-         auth_views.LoginView.as_view(template_name='main/login.html'), 
+    path('login/',
+         auth_views.LoginView.as_view(template_name='main/login.html'),
          name='login'),
 
-    path('logout/', 
-         auth_views.LogoutView.as_view(next_page='home'), 
+    path('logout/',
+         auth_views.LogoutView.as_view(next_page='home'),
          name='logout'),
 
     path('register/', register, name='register'),

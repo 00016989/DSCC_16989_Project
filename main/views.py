@@ -12,7 +12,6 @@ from .models import Product, Feedback, Category
 from django.core.exceptions import PermissionDenied
 
 
-
 def home(request):
     products = Product.objects.all().order_by('-id')[:3]
 
@@ -44,7 +43,6 @@ class ProductListView(ListView):
 class ProductDetailView(DetailView):
     model = Product
     template_name = 'main/product_detail.html'
-
 
 
 class ProductCreateView(LoginRequiredMixin, UserPassesTestMixin, CreateView):
@@ -95,7 +93,7 @@ class FeedbackListView(ListView):
     template_name = 'main/feedback_list.html'
     context_object_name = 'feedbacks'
     ordering = ['-created_at']
-    
+
 
 class FeedbackUpdateView(LoginRequiredMixin, UpdateView):
     model = Feedback
