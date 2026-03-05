@@ -33,10 +33,16 @@ jobs:
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
       - name: Build Docker image
-        run: docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/originalmart:latest .
+        run: |
+          docker build \
+            -t ${{ secrets.DOCKERHUB_USERNAME }}/originalmart:latest \
+            -t ${{ secrets.DOCKERHUB_USERNAME }}/originalmart:${{ github.sha }} \
+            .
 
-      - name: Push Docker image
-        run: docker push ${{ secrets.DOCKERHUB_USERNAME }}/originalmart:latest
+      - name: Push Docker images
+        run: |
+          docker push ${{ secrets.DOCKERHUB_USERNAME }}/originalmart:latest
+          docker push ${{ secrets.DOCKERHUB_USERNAME }}/originalmart:${{ github.sha }}
 
       - name: Deploy to VPS
         uses: appleboy/ssh-action@v1.0.3
@@ -47,7 +53,6 @@ jobs:
           script: |
             cd /root/DSCC_16989_Project
             docker compose pull
-            docker compose down || true
-            docker compose up -d
+            docker compose up -d --remove-orphans
             docker compose exec -T web python manage.py migrate
             docker compose exec -T web python manage.py collectstatic --noinput
