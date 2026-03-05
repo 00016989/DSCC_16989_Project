@@ -24,18 +24,18 @@
             color: #111827;
         }
 
-        /* Remove ugly link underline globally */
+        /* ---- Remove ugly link underline globally ---- */
         a {
             text-decoration: none;
         }
 
-        /* ================= BRAND COLORS ================= */
+        /* ---- BRAND COLORS ---- */
         :root {
             --primary: #2196F3;
             --primary-dark: #1976D2;
         }
 
-        /* ================= NAVBAR ================= */
+        /* ---- NAVBAR ---- */
         nav {
             background-color: #111827;
             padding: 15px 40px;
@@ -63,7 +63,7 @@
             transition: 0.3s;
         }
 
-        /* Smooth hover underline animation */
+        /* ---- Smooth hover underline animation ---- */
         .nav-links a::after {
             content: "";
             position: absolute;
@@ -83,7 +83,7 @@
             color: white;
         }
 
-        /* ================= BUTTON SYSTEM ================= */
+        /* ---- BUTTON SYSTEM ---- */
         .btn {
             display: inline-block;
             padding: 8px 18px;
@@ -132,7 +132,7 @@
             color: white;
         }
 
-        /* ================= CATEGORY BUTTONS ================= */
+        /* ---- CATEGORY BUTTONS ---- */
         .category-btn {
             padding: 8px 18px;
             border-radius: 20px;
@@ -153,7 +153,7 @@
             color: white;
         }
 
-        /* ================= FORM INPUTS ================= */
+        /* ---- FORM INPUTS ---- */
         input[type="text"],
         input[type="password"],
         input[type="email"],
@@ -174,7 +174,7 @@
             border-color: var(--primary);
         }
 
-        /* ================= CONTENT ================= */
+        /* ---- CONTENT ---- */
         .container {
             flex: 1;
             max-width: 1100px;
@@ -187,7 +187,7 @@
             margin-bottom: 15px;
         }
 
-        /* ================= FOOTER ================= */
+        /* ---- FOOTER ----*/
         footer {
             text-align: center;
             padding: 20px;
@@ -196,7 +196,7 @@
             font-size: 14px;
         }
 
-        /* ================= RESPONSIVE ================= */
+        /*---- RESPONSIVE ---- */
         @media (max-width: 768px) {
 
             nav {
@@ -221,7 +221,7 @@
 
 <body>
 
-<!-- ================= NAVBAR ================= -->
+<!---- NAVBAR ---->
 <nav>
     <a href="{% url 'home' %}" class="logo">Original Mart</a>
 
@@ -248,13 +248,13 @@
     </div>
 </nav>
 
-<!-- ================= PAGE CONTENT ================= -->
+<!---- PAGE CONTENT ---->
 <div class="container">
     {% block content %}
     {% endblock %}
 </div>
 
-<!-- ================= FOOTER ================= -->
+<!---- FOOTER ---->
 <footer>
     © 2026 Original Market | Built with Django
 </footer>

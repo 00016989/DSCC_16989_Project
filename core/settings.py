@@ -15,15 +15,12 @@ DEBUG = os.getenv("DEBUG", "False") == "True"
 
 ALLOWED_HOSTS = ["originalmart.uz", "www.originalmart.uz", "localhost", "127.0.0.1"]
 
-# Required when DEBUG=False and behind nginx
-
 CSRF_TRUSTED_ORIGINS = [
     "http://originalmart.uz",
     "http://www.originalmart.uz",
     "http://localhost",
     "http://127.0.0.1"
 ]
-# --------------------------------------------------
 
 INSTALLED_APPS = [
     "django.contrib.admin",
@@ -65,9 +62,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = "core.wsgi.application"
 
-# --------------------------------------------------
-# DATABASE
-# --------------------------------------------------
 
 if os.getenv("GITHUB_ACTIONS") == "true":
     DATABASES = {
@@ -88,8 +82,6 @@ else:
         }
     }
 
-# --------------------------------------------------
-
 AUTH_PASSWORD_VALIDATORS = [
     {"NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator"},
     {"NAME": "django.contrib.auth.password_validation.MinimumLengthValidator"},
@@ -103,26 +95,15 @@ TIME_ZONE = "UTC"
 USE_I18N = True
 USE_TZ = True
 
-# --------------------------------------------------
-# STATIC & MEDIA
-# --------------------------------------------------
-
 STATIC_URL = "/static/"
 STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
-
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
 MEDIA_URL = "/media/"
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 
-# --------------------------------------------------
-
 LOGIN_REDIRECT_URL = "/"
 LOGIN_URL = "/login/"
 LOGOUT_REDIRECT_URL = "login"
-
-# --------------------------------------------------
-# Important when behind nginx
-# --------------------------------------------------
 
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
